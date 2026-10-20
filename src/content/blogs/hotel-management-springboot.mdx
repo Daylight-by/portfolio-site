@@ -1,0 +1,73 @@
+---
+title: "酒店管理系统 · Spring Boot 全栈项目"
+publishedAt: "2026-06-23"
+summary: "大二大创赛项目。从零学 Spring Boot，一路写代码、建库、做页面到最后用 Docker + Railway 部署上线，第一个完整走下来的全栈项目。"
+author: "Daylight-by"
+tags: ["项目实战", "Spring Boot", "Java", "Docker", "PostgreSQL"]
+---
+
+大二参加大创赛（大学生创新创业训练计划）时做的项目。当时选题是酒店管理系统，从零开始学 Spring Boot，一路写代码、搭数据库、做前端页面，最后部署上线。算是我第一个完整走下来的全栈项目。
+
+- 在线体验：[hotel-management.up.railway.app](https://hotel-management-production-ad71.up.railway.app)
+- 源码：[github.com/Daylight-by/hotel-management](https://github.com/Daylight-by/hotel-management)
+
+## 技术栈
+
+| 技术 | 说明 |
+| --- | --- |
+| Spring Boot 4 | Web 框架 |
+| Java 21 | 语言版本 |
+| Thymeleaf | 服务端模板引擎 |
+| JPA + Hibernate | ORM 持久层 |
+| PostgreSQL | 数据库 |
+| Docker | 容器化部署 |
+| Railway | 云部署平台 |
+
+## 功能模块
+
+### 客房管理
+
+- 房间增删改查
+- 房间类型管理（单人间、双人间、套房等）
+- 房间状态实时显示（空闲 / 已入住）
+
+### 住客管理
+
+- 住客信息登记
+- 住客列表查询
+- 住客与订单关联
+
+### 订单管理
+
+- 创建入住订单
+- 退房处理
+- 订单状态流转
+
+### 后台管理
+
+- 管理员权限控制
+- 数据初始化脚本
+
+## 部署方案
+
+项目用 Docker 多阶段构建，通过 Railway 部署到云端。
+
+环境变量通过 Railway 自动注入 PostgreSQL 连接信息，`application.properties` 里用 `${PGHOST:localhost}` 这种方式做兜底，本地开发和线上部署共用一套配置。
+
+## 踩坑记录
+
+### Railway 数据库变量不自动共享
+
+加了 PostgreSQL 数据库后，应用一直连不上。查了日志才发现数据库的连接信息（`PGHOST`、`PGPASSWORD` 等）只在 Postgres 服务那边有，应用服务拿不到。
+
+解决办法是用 `railway variable set --service` 把变量手动复制过去。这个问题卡了大半天，最后发现是配置问题不是代码问题。
+
+### Docker 构建时的中文路径问题
+
+Windows 下项目路径含中文（`E:\项目\酒店管理\`），Docker 构建和 Maven 打包都容易出问题。最后用 junction（`mklink /J`）创建了一个纯 ASCII 的软链接来绕过。
+
+## 总结
+
+回头看这个项目，虽然代码不算复杂，但对我来说意义挺大的。大二刚接触 Java Web，很多东西都是边学边做，踩了不少坑。
+
+现在重新把部署流程跑了一遍（Docker + Railway），算是给大创项目画了个完整的句号。

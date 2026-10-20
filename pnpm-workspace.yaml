@@ -1,0 +1,12 @@
+# 重要：pnpm 10+ 只认这里的设置，写在 .npmrc 里会被忽略。
+# 本机（Windows）默认的 isolated 链接器会静默失败——只创建空的 @scope 目录、
+# 不创建顶层软链，install 却报 "Done" 成功，导致 next build 找不到 react。
+# 改成 hoisted 扁平布局后一切正常。不要删掉这个设置。
+nodeLinker: hoisted
+
+allowBuilds:
+  '@parcel/watcher': true
+  sharp: true
+  unrs-resolver: true
+minimumReleaseAgeExclude:
+  - '@chibi3d/runtime@0.5.0'
