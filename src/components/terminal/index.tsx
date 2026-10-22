@@ -410,6 +410,8 @@ const openTargets: Record<string, { label: string; href: string; external?: stri
   "酒店": { label: "来财酒店 PMS", href: "/#projects" },
   portfolio: { label: "本站", href: "/#projects" },
   site: { label: "本站", href: "/#projects" },
+  "half-year-later": { label: "半年没更新", href: "/blogs/half-year-later" },
+  "半年": { label: "半年没更新", href: "/blogs/half-year-later" },
   "hello-world": { label: "博客搭建完成", href: "/blogs/hello-world" },
   "hotel-management-springboot": {
     label: "酒店管理系统 · Spring Boot 全栈项目",

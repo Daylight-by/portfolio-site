@@ -389,7 +389,7 @@ const projects: Project[] = [
         PROJECT_SKILLS.docker,
       ],
     },
-    github: "",
+    github: "https://github.com/Daylight-by/hotel-pms",
     live: "",
     get content() {
       return (
