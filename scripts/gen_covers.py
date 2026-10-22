@@ -1,4 +1,4 @@
-"""生成项目封面图：暗色渐变 + 网格 + 噪点 + 大标题，风格与站点一致。
+"""生成项目封面图：暗色渐变 + 网格 + 噪点 + 大标题，风格与站点一致。"""
 import math, os, random
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
@@ -114,11 +114,11 @@ def build(slug, c1, c2, c3, accent, kicker, title, subtitle, tags):
     print(f"{slug}/cover.jpg  {os.path.getsize(f'{OUT}/{slug}/cover.jpg')//1024}KB")
 
 
-build("hotel-management", "#070d18", "#12283f", "#0a1a2e", "#38e0c8",
-      "SPRING BOOT  /  FULL-STACK",
-      "酒店管理系统",
-      "Java 21 · PostgreSQL · Docker · Railway",
-      ["Spring Boot 4", "JPA / Hibernate", "Thymeleaf", "Docker", "CI/CD"])
+build("hotel-management", "#0a1310", "#16302a", "#07100c", "#d9b779",
+      "SPRING BOOT  /  VUE 3  /  HOTEL PMS",
+      "来财酒店 PMS",
+      "33 张表 · 27 个后端模块 · 前台到财务全流程",
+      ["Spring Boot 3.5", "Vue 3", "MyBatis-Plus", "多租户", "uni-app"])
 
 build("huana-mall", "#160a1e", "#3a1240", "#1a0a22", "#ff5fa2",
       "TARO  /  WECHAT MINI PROGRAM",

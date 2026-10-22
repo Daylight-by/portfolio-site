@@ -371,71 +371,107 @@ const projects: Project[] = [
   },
   {
     id: "hotel-management",
-    category: "Spring Boot · 全栈实战",
-    title: "酒店管理系统",
+    category: "酒店 PMS · 全栈工程",
+    title: "来财酒店 PMS",
     src: "/assets/projects-screenshots/hotel-management/cover.jpg",
     screenshots: ["cover.jpg"],
     skills: {
       frontend: [
-        PROJECT_SKILLS.springboot,
-        PROJECT_SKILLS.thymeleaf,
-        PROJECT_SKILLS.java,
+        PROJECT_SKILLS.vue,
+        PROJECT_SKILLS.ts,
+        PROJECT_SKILLS.tailwind,
       ],
       backend: [
-        PROJECT_SKILLS.postgres,
+        PROJECT_SKILLS.springboot,
+        PROJECT_SKILLS.java,
+        PROJECT_SKILLS.mysql,
+        PROJECT_SKILLS.redis,
         PROJECT_SKILLS.docker,
-        PROJECT_SKILLS.nginx,
-        PROJECT_SKILLS.git,
       ],
     },
-    github: "https://github.com/Daylight-by/hotel-management",
+    github: "",
     live: "",
     get content() {
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            第一个从零写到线上的项目。大二，大创赛，边学边做。
+            大二那版是 Thymeleaf 单体。这一版推倒重来 —— 33 张表，前后端分离，真能开门营业的那种。
           </TypographyP>
           <TypographyP className="font-mono">
-            大二参加大创赛时的选题。那时候刚接触 Java Web，
-            Spring Boot 是现学的，PostgreSQL 是现学的，Docker 也是现学的。
-            从建库、写实体、做页面到部署上线，第一次把一整套流程完整走下来。
+            还是大创赛的题，但规模完全不是一回事了。上一版是「客房 + 住客 + 订单 + 后台」
+            四个增删改查，跑起来能演示，可离一家酒店真能用还差很远：没有账务、没有夜审、
+            没有房价日历，连「今天该收多少钱」都算不出来。
+          </TypographyP>
+          <TypographyP className="font-mono">
+            这一版按真实 PMS 的业务边界重新拆：房态、预订、账务（Folio）、夜审与营业日、
+            收益定价、经营报表、协议单位应收、合规与硬件对接。前端也换成了 Vue3 + Element Plus
+            的管理后台，另有一个 uni-app 的 C 端预订站。
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
 
-          <TypographyH3 className="my-4 mt-8">做了什么</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">规模</TypographyH3>
           <p className="font-mono mb-2">
-            客房管理（房型、房间状态实时显示）、住客管理（信息登记、
-            与订单关联）、订单管理（入住、退房、状态流转）、
-            后台管理（管理员权限、数据初始化）。
-          </p>
-          <p className="font-mono mb-2">
-            分层是标准的 Controller / Service / Repository 三层，
-            JPA + Hibernate 做持久化。前端用 Thymeleaf 服务端渲染 ——
-            当时的选择理由很朴素：不想再学一个前端框架。
+            33 张业务表 · 316 个 Java 文件 · 27 个后端模块 · 29 个前端页面模块。
+            所有业务表继承 <code>TenantBaseDO</code>，走芋道的多租户隔离。
           </p>
 
-          <TypographyH3 className="my-4 mt-8">两个真踩过的坑</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">几个真正花时间的地方</TypographyH3>
           <p className="font-mono mb-2">
-            <strong>Railway 的数据库变量不自动共享。</strong>
-            挂了 PostgreSQL 之后应用一直连不上，查日志才发现
-            <code>PGHOST</code> / <code>PGPASSWORD</code> 这些只在 Postgres
-            服务里存在，应用服务读不到。最后用
-            <code>railway variable set --service</code> 手动搬过去。
-            卡了大半天，结论是「配置问题永远先怀疑环境，别怀疑代码」。
+            <strong>房态不是一个字段，是一条链。</strong>
+            退房 → 房间置「待清洁」→ 自动生成清洁任务 → 保洁完成 → 领班核实 → 房间回「空闲」。
+            中间跳一步，房态就错了。所以房间挂着未关闭的清洁任务时，不允许直接改成空闲 ——
+            这类约束我没写在注释里，写进了 service 的校验，并用接口级测试兜住。
           </p>
           <p className="font-mono mb-2">
-            <strong>Docker 构建遇到中文路径。</strong>
-            Windows 下项目放在 <code>E:\项目\酒店管理\</code>，
-            Docker 构建和 Maven 打包都会挂。解法是用
-            <code>mklink /J</code> 建一个纯 ASCII 的目录链接绕过去。
+            <strong>订单状态机与日期冲突。</strong>
+            10 待确认 → 20 已确认 → 30 已入住 → 40 已退房，只有 10/20 能取消到 50。
+            同一间房在 <code>[入住日, 离店日)</code> 区间内不允许重复占用 ——
+            左闭右开意味着退房当天可以再卖，这个边界我调过一次才对。
+          </p>
+          <p className="font-mono mb-2">
+            <strong>金额只认后端。</strong>
+            前端只做预估展示，实收一律由后端按房间实时售价 × 晚数重算。
+            前后端各算一套、结果对不上，是最容易被钻空子的地方。
+          </p>
+          <p className="font-mono mb-2">
+            <strong>多租户是白送的，但要守住。</strong>
+            请求带 <code>tenant-id</code> 头，框架负责隔离。听起来没我什么事，
+            可只要有一张表漏了 <code>tenant_id</code>，两个门店的数据就串了。
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">关于「不动上游一行代码」</TypographyH3>
+          <p className="font-mono mb-2">
+            整个项目挂在芋道（yudao-boot-mini）脚手架上，但业务代码全在自己的
+            <code>yudao-module-hotel</code> 里，没改 <code>system</code> / <code>infra</code> 一行。
+            接入方式就是在根 pom 加一个 module、server 的 pom 引一个依赖。
+          </p>
+          <p className="font-mono mb-2">
+            好处是上游升级能直接 pull；代价是每次「顺手改一下框架」的念头都要忍住。
+            最后发现，忍住的那些基本都不是真需求。
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">踩的坑</TypographyH3>
+          <p className="font-mono mb-2">
+            <strong>建库不是一条 SQL。</strong>
+            <code>hotel.sql</code> 只是 P0 的 14 张表，P1/P2 的增量散在 t1~t5 里，得按序累加。
+            这个坑我自己也踩了，所以专门补了 <code>sql/mysql/README.md</code> 把顺序写死。
+          </p>
+          <p className="font-mono mb-2">
+            <strong>pnpm 的 ERR_PNPM_IGNORED_BUILDS。</strong>
+            pnpm 10+ 会忽略 <code>.npmrc</code> 里的 onlyBuiltDependencies，
+            必须写进 <code>pnpm-workspace.yaml</code>，否则 Vite 起来找不到 esbuild。
+          </p>
+          <p className="font-mono mb-2">
+            <strong>LocalDate 少了 @JsonFormat。</strong>
+            不加注解，前端拿到的日期会整体差一天 —— 时区问题，排查起来比想象中费劲。
           </p>
 
           <TypographyH3 className="my-4 mt-8">现在的状态</TypographyH3>
           <p className="font-mono mb-2">
-            代码完整开源在 GitHub 上，Dockerfile 和多阶段构建都在仓库里。
-            线上 demo 因为 Railway 免费实例到期已经下线了 ——
-            想看跑起来的样子，clone 下来 <code>docker compose up</code> 即可。
+            后端 48080、前端 5173，双击 <code>一键启动.bat</code> 就能拉起来，
+            <code>admin / admin123</code> 进去就是房态看板。
+            公安上传、门锁、OTA 做的是标准适配层，用模拟数据演示 ——
+            真接需要对接方资质，那不是代码能解决的事。
           </p>
         </div>
       );

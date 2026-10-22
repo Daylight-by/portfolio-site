@@ -43,15 +43,15 @@ const SECTIONS = {
       stack: "Taro 4 · React · TypeScript · Tailwind",
     },
     {
-      name: "酒店管理系统",
-      period: "2026.03 – 2026.06",
+      name: "来财酒店 PMS",
+      period: "2026.03 – 至今",
       role: "大创赛项目 · 全栈",
       points: [
-        "第一个从零写到线上的项目：建库、实体、页面、Docker、云部署全流程。",
-        "客房 / 住客 / 订单 / 后台四模块，Controller–Service–Repository 三层分层。",
-        "定位并解决 Railway 环境变量不共享、Windows 中文路径导致 Docker 构建失败两个问题。",
+        "从 Thymeleaf 单体重构为前后端分离的完整 PMS：33 张业务表、27 个后端模块、29 个前端页面。",
+        "覆盖房态与清洁联动、订单状态机、账务 Folio、夜审营业日、收益定价、协议单位应收。",
+        "基于芋道脚手架增量开发，业务全部收敛在自定义模块内，未改动上游 system / infra 代码。",
       ],
-      stack: "Spring Boot 4 · Java 21 · PostgreSQL · Thymeleaf · Docker",
+      stack: "Spring Boot 3.5 · MyBatis-Plus · MySQL · Redis · Vue 3 · uni-app",
     },
     {
       name: "个人作品集站点",

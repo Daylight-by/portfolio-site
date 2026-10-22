@@ -25,7 +25,7 @@ const about = `# 关于我
 先把博客搭起来，再把学到的东西一条条写下来，写着写着发现
 光看是没用的 —— 得自己动手做一个东西出来。
 
-所以有了酒店管理系统（第一个从零写到线上的项目），
+所以有了酒店管理系统（大二那版是第一个从零写到线上的项目），
 有了电商小程序（27 个页面，完整链路），
 现在在做知识库和 Agent 工作流平台。
 
@@ -53,7 +53,7 @@ Linux / Git / Bash
 ## 项目
 - 知识库与 Agent 工作流平台   2026.09 – 至今
 - 电商小程序（27 页）          2026.09 – 2026.10
-- 酒店管理系统（Spring Boot）  2026.03 – 2026.06
+- 来财酒店 PMS（Spring Boot + Vue3） 2026.03 – 至今
 - 本站（Next.js + WebGL）      2026.10
 
 ## 联系方式
@@ -137,39 +137,57 @@ ESLint 零警告 + tsc + 一个自定义的分层守卫脚本（check-layering.m
 （源码暂未公开）
 `;
 
-const projHotel = `# 酒店管理系统
+const projHotel = `# 来财酒店 PMS
 
-Spring Boot 4 + Java 21 + PostgreSQL + Thymeleaf + Docker。
+Spring Boot 3.5 + Java 21 + MyBatis-Plus + MySQL + Redis + Vue 3 + Element Plus。
 
-# 背景
+# 一句话
 
-大二大创赛的选题。那时候刚接触 Java Web，
-Spring Boot 是现学的，PostgreSQL 是现学的，Docker 也是现学的。
-从建库、写实体、做页面到部署上线，第一次把一整套流程完整走下来。
+大二那版是 Thymeleaf 单体，这一版推倒重来：
+33 张表、27 个后端模块、29 个前端页面，真能开门营业的那种。
 
-# 功能
+# 为什么重做
 
-客房管理（房型、房间状态实时显示）
-住客管理（信息登记、与订单关联）
-订单管理（入住、退房、状态流转）
-后台管理（管理员权限、数据初始化）
+上一版是「客房 + 住客 + 订单 + 后台」四个增删改查，能演示，
+但离一家酒店真的能用差很远 —— 没有账务、没有夜审、没有房价日历，
+连「今天该收多少钱」都算不出来。
 
-分层是 Controller / Service / Repository 三层，JPA + Hibernate 做持久化。
+这一版按真实 PMS 的业务边界重新拆：
+房态、预订、账务（Folio）、夜审与营业日、收益定价、经营报表、
+协议单位应收、合规与硬件对接。
 
-# 两个真踩过的坑
+# 几个花时间的地方
 
-1. Railway 的数据库变量不自动共享。
-   挂了 PostgreSQL 之后应用一直连不上，查日志才发现 PGHOST / PGPASSWORD
-   这些只在 Postgres 服务里存在，应用服务读不到。
-   最后用 "railway variable set --service" 手动搬过去。
-   卡了大半天 —— 结论是配置问题永远先怀疑环境，别怀疑代码。
+1. 房态不是一个字段，是一条链。
+   退房 → 待清洁 → 自动生成清洁任务 → 保洁完成 → 领班核实 → 回空闲。
+   跳一步就错，所以房间挂着未关闭的清洁任务时不允许直接改空闲。
+2. 订单状态机与日期冲突。
+   10→20→30→40，只有 10/20 能取消到 50。
+   同房间 [入住日, 离店日) 不允许重复占用 —— 左闭右开，退房当天能再卖。
+3. 金额只认后端。
+   前端只做预估，实收一律后端按实时售价 × 晚数重算。
+4. 多租户是白送的，但要守住。
+   一张表漏了 tenant_id，两个门店的数据就串了。
 
-2. Docker 构建遇到中文路径。
-   Windows 下项目在 E:\\项目\\酒店管理\\，Docker 构建和 Maven 打包都会挂。
-   解法是用 mklink /J 建一个纯 ASCII 的目录链接绕过去。
+# 不动上游一行代码
 
-# 链接
-https://github.com/Daylight-by/hotel-management
+挂在芋道 yudao-boot-mini 脚手架上，业务代码全在自己的 yudao-module-hotel 里。
+接入就是在根 pom 加一个 module、server 的 pom 引一个依赖。
+好处是上游升级能直接 pull，代价是所有「顺手改框架」的念头都得忍住。
+
+# 踩的坑
+
+1. 建库不是一条 SQL。hotel.sql 只是 P0 的 14 张表，
+   P1/P2 的增量在 t1~t5 里，必须按序累加。补了 sql/mysql/README.md 写死顺序。
+2. pnpm 10+ 忽略 .npmrc 里的 onlyBuiltDependencies，
+   必须写进 pnpm-workspace.yaml，否则 Vite 找不到 esbuild。
+3. LocalDate 不加 @JsonFormat，前端拿到的日期整体差一天。
+
+# 怎么跑
+
+双击 一键启动.bat，后端 48080 / 前端 5173，
+admin / admin123，进去就是房态看板。
+公安上传、门锁、OTA 是适配层，用模拟数据演示。
 `;
 
 const projSite = `# 本站 · 作品集
@@ -277,7 +295,7 @@ export const ROOT: VNode = {
           name: "hotel-management.md",
           kind: "file",
           content: projHotel,
-          hint: "酒店管理系统 · Spring Boot",
+          hint: "来财酒店 PMS · 33 张表",
         },
         {
           name: "portfolio-site.md",
