@@ -145,7 +145,7 @@ build("yudao-designer", "#0a1016", "#143036", "#071214", "#4fd6c2",
       ["Spring Boot 2.x", "Java", "MyBatis", "多租户", "Vue"])
 
 build("asean-risk", "#0d0a18", "#2c1640", "#12081f", "#ff7a59",
-      "CROSS-BORDER RISK WARNING  /  2nd PRIZE",
+      "DATA ELEMENT × GUANGXI  /  2nd PRIZE",
       "东盟跨境风控预警平台",
-      "中小商户智能评分 · 可解释评分卡 · 竞赛二等奖",
+      "数据要素×大赛广西分赛 · 高校赛道 · 二等奖",
       ["Spring Boot 3.3", "Java 21", "Vue 2", "ECharts", "微信小程序"])

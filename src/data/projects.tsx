@@ -499,39 +499,45 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            在芋道脚手架上长出的不只是一个模块 —— 是一整套设计师 / 家装业务。
+            实习期间跟着团队，第一次把 Spring Boot 的分层和规范用在真实业务上。
           </TypographyP>
           <TypographyP className="font-mono">
-            基于芋道（yudao，2025.10）商城版做的二次开发，目标是做一个连接业主与设计师的
-            家装服务平台。官方模块（system / infra / 会员 / 交易）一行没动，
-            全部业务都落在自研的两个模块里。
+            这是我在实习期间参与开发的一个家装服务平台，连接业主与设计师，
+            基于芋道（yudao，2025.10）商城版二次开发。平台级的官方模块
+            （system / infra / 会员 / 交易）由团队维护，我跟随导师和同事，
+            在其上做业务模块，走完了从需求、编码、联调到上线的全过程。
           </TypographyP>
 
-          <TypographyH3 className="my-4 mt-8">自研了什么</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">项目做了什么</TypographyH3>
           <p className="font-mono mb-2">
             <strong>设计师模块（designer）。</strong>
             设计师档案、入驻审核、认证等级与变更记录、服务项、排班与节假日、预约下单与预约历史、
             作品集 / 图片 / 空间、全景图、技能评分、评价、收藏、会话沟通、消息通知、平台统计 ——
-            二十多个业务子域，按芋道的 controller / service / dal / convert 分层铺开。
+            二十多个业务子域，按芋道的 controller / service / dal / convert 分层组织。
           </p>
           <p className="font-mono mb-2">
             <strong>家装案例模块（designerCase）。</strong>
             案例主档、案例空间、家装案例，把作品和可复用的设计方案沉淀成可浏览的内容。
           </p>
+          <p className="font-mono mb-2">
+            这两个模块是团队协作的成果，我在其中参与了业务接口、Service 逻辑和数据访问层
+            的开发，跟着 code review 一点点对齐团队的写法。
+          </p>
 
-          <TypographyH3 className="my-4 mt-8">技术上的取舍</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">在这个项目里学到的</TypographyH3>
           <p className="font-mono mb-2">
             业务实体一律继承 <code>TenantBaseDO</code>，走框架的多租户隔离和数据权限；
             预约、排班、状态流转用枚举加 service 校验兜住，避免时间冲突和状态回跳；
-            全景图、作品集图片走资源服务统一管理。
+            全景图、作品集图片走资源服务统一管理。这些都是在真实项目里才真正理解的。
           </p>
           <p className="font-mono mb-2">
-            坚持「不改上游」：根 pom 加 module、server pom 引依赖就能接入，
-            官方框架升级可以直接 pull，不跟业务代码打架。
+            团队坚持「不改上游」：根 pom 加 module、server pom 引依赖就能接入，
+            官方框架升级可以直接 pull，不跟业务代码打架 —— 这也让我明白了协作项目里
+            守住边界比「顺手改一下」更重要。
           </p>
           <p className="font-mono mb-2">
-            两个自研模块共约 <strong>300 个 Java 类</strong>、二十多张 MyBatis Mapper，
-            已在生产环境以 Spring Boot 48080 端口跑起来。
+            两个业务模块共约 <strong>300 个 Java 类</strong>、二十多张 MyBatis Mapper，
+            项目已在生产环境以 Spring Boot 48080 端口运行。
           </p>
         </div>
       );
@@ -539,7 +545,7 @@ const projects: Project[] = [
   },
   {
     id: "asean-risk",
-    category: "竞赛 · 二等奖 · 风控预警",
+    category: "数据要素×大赛 · 二等奖",
     title: "东盟跨境中小商户智能风控预警平台",
     src: "/assets/projects-screenshots/asean-risk/cover.jpg",
     screenshots: ["cover.jpg"],
@@ -560,13 +566,15 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            竞赛二等奖 —— 一套面向东盟跨境中小商户的可解释风控与事前预警原型。
+          <TypographyP className="font-mono text-xl text-center">
+            2026 年「数据要素 ×」大赛广西分赛（高校赛道）暨第六届广西公共数据开放创新应用大赛
+            · 二等奖
           </TypographyP>
           <TypographyP className="font-mono">
-            面向中国—东盟跨境中小商户，把海关吞吐、口岸、贸易统计、政策目录等公开数据
-            整合起来，输出企业合规风险的辅助判断。参赛中负责整体设计与全栈实现，
-            最终拿到竞赛<strong>二等奖</strong>。
+            一套面向中国—东盟跨境中小商户的可解释风控与事前预警原型，把海关吞吐、口岸、
+            贸易统计、政策目录等公开数据整合起来，输出企业合规风险的辅助判断。
+            作品参加 2026 年「数据要素 ×」大赛广西分赛（高校赛道）暨第六届广西公共数据
+            开放创新应用大赛，最终获<strong>二等奖</strong>，由我负责整体设计与全栈实现。
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
 
