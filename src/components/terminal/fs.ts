@@ -214,6 +214,56 @@ output: "export" 静态导出。没有 API 路由、没有服务端运行时、�
 移植成 TypeScript 模块，去掉 bloom 和后处理，只留最核心的场求解。
 `;
 
+const projYudao = `# 设计师家装服务平台
+
+基于芋道（yudao，2025.10）商城版二次开发，连接业主与设计师的家装服务平台。
+
+# 自研了什么
+
+- designer 设计师模块：档案、入驻审核、认证等级、服务项、排班节假日、
+  预约下单、作品集 / 图片 / 空间、全景图、技能评分、评价、收藏、会话、通知、统计。
+- designerCase 家装案例模块：案例主档、案例空间、家装案例。
+
+# 技术取舍
+
+业务实体继承 TenantBaseDO，走多租户隔离和数据权限；
+预约、排班、状态流转用枚举 + service 校验，防时间冲突和状态回跳。
+官方模块一行没动，根 pom 加 module、server pom 引依赖即接入。
+
+两个自研模块约 300 个 Java 类、二十多张 MyBatis Mapper，
+生产环境以 Spring Boot 48080 端口运行。
+
+# 链接
+
+源码为私有仓库，仅作展示。
+`;
+
+const projAsean = `# 东盟跨境中小商户智能风控预警平台
+
+竞赛 · 二等奖。面向中国—东盟跨境中小商户的可解释风控与事前预警原型。
+
+# 评分模型
+
+可解释评分卡 + 国别规则配置 + 事前预警特征。
+权重：基础资质 20% / 经营合规 30% / 口岸通关 25% / 贸易活跃 15% / 综合调整 10%。
+阈值和国别权重持久化在数据库，监管端可配。每条结论都能点开看来源。
+
+# 三端
+
+后端 Spring Boot 3.3 + Java 21 + MyBatis + MySQL 8 + Redis；
+政务监管端 Vue 2 + Element UI + ECharts；
+商户端原生微信小程序，17 个页面。
+
+# 数据与边界
+
+公开海关、口岸、贸易统计、政策目录数据，附数据可信说明与回测误报分析。
+输出是风险辅助判断，不构成行政处罚、海关裁定或金融授信结论。
+
+# 链接
+
+github.com/Daylight-by/asean-risk-warning-platform（公开）
+`;
+
 const blogHello = `# 博客搭建完成
 
 2026-06-19 · 随笔
@@ -312,7 +362,7 @@ export const ROOT: VNode = {
     {
       name: "projects",
       kind: "dir",
-      hint: "4 个项目",
+      hint: "6 个项目",
       children: [
         {
           name: "knowledge-hub.md",
@@ -331,6 +381,18 @@ export const ROOT: VNode = {
           kind: "file",
           content: projHotel,
           hint: "来财酒店 PMS · 33 张表",
+        },
+        {
+          name: "yudao-designer.md",
+          kind: "file",
+          content: projYudao,
+          hint: "设计师家装平台 · 芋道二次开发",
+        },
+        {
+          name: "asean-risk.md",
+          kind: "file",
+          content: projAsean,
+          hint: "东盟跨境风控 · 竞赛二等奖",
         },
         {
           name: "portfolio-site.md",

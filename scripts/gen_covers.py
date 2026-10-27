@@ -137,3 +137,15 @@ build("knowledge-hub", "#06101c", "#122b52", "#071426", "#6aa8ff",
       "知识库与 Agent 工作流",
       "文档入库 · 向量检索 · Agent 编排 · 工作流可视化",
       ["Next.js", "TypeScript", "PostgreSQL", "Docker", "Python"])
+
+build("yudao-designer", "#0a1016", "#143036", "#071214", "#4fd6c2",
+      "SPRING BOOT  /  YUDAO  /  HOME DESIGN",
+      "设计师家装服务平台",
+      "芋道二次开发 · 设计师 + 家装案例两个自研模块 · 300 个类",
+      ["Spring Boot 2.x", "Java", "MyBatis", "多租户", "Vue"])
+
+build("asean-risk", "#0d0a18", "#2c1640", "#12081f", "#ff7a59",
+      "CROSS-BORDER RISK WARNING  /  2nd PRIZE",
+      "东盟跨境风控预警平台",
+      "中小商户智能评分 · 可解释评分卡 · 竞赛二等奖",
+      ["Spring Boot 3.3", "Java 21", "Vue 2", "ECharts", "微信小程序"])

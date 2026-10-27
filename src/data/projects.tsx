@@ -478,6 +478,129 @@ const projects: Project[] = [
     },
   },
   {
+    id: "yudao-designer",
+    category: "Spring Boot · 芋道二次开发",
+    title: "设计师家装服务平台",
+    src: "/assets/projects-screenshots/yudao-designer/cover.jpg",
+    screenshots: ["cover.jpg"],
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.vue,
+      ],
+      backend: [
+        PROJECT_SKILLS.springboot,
+        PROJECT_SKILLS.java,
+        PROJECT_SKILLS.mysql,
+        PROJECT_SKILLS.redis,
+      ],
+    },
+    live: "",
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            在芋道脚手架上长出的不只是一个模块 —— 是一整套设计师 / 家装业务。
+          </TypographyP>
+          <TypographyP className="font-mono">
+            基于芋道（yudao，2025.10）商城版做的二次开发，目标是做一个连接业主与设计师的
+            家装服务平台。官方模块（system / infra / 会员 / 交易）一行没动，
+            全部业务都落在自研的两个模块里。
+          </TypographyP>
+
+          <TypographyH3 className="my-4 mt-8">自研了什么</TypographyH3>
+          <p className="font-mono mb-2">
+            <strong>设计师模块（designer）。</strong>
+            设计师档案、入驻审核、认证等级与变更记录、服务项、排班与节假日、预约下单与预约历史、
+            作品集 / 图片 / 空间、全景图、技能评分、评价、收藏、会话沟通、消息通知、平台统计 ——
+            二十多个业务子域，按芋道的 controller / service / dal / convert 分层铺开。
+          </p>
+          <p className="font-mono mb-2">
+            <strong>家装案例模块（designerCase）。</strong>
+            案例主档、案例空间、家装案例，把作品和可复用的设计方案沉淀成可浏览的内容。
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">技术上的取舍</TypographyH3>
+          <p className="font-mono mb-2">
+            业务实体一律继承 <code>TenantBaseDO</code>，走框架的多租户隔离和数据权限；
+            预约、排班、状态流转用枚举加 service 校验兜住，避免时间冲突和状态回跳；
+            全景图、作品集图片走资源服务统一管理。
+          </p>
+          <p className="font-mono mb-2">
+            坚持「不改上游」：根 pom 加 module、server pom 引依赖就能接入，
+            官方框架升级可以直接 pull，不跟业务代码打架。
+          </p>
+          <p className="font-mono mb-2">
+            两个自研模块共约 <strong>300 个 Java 类</strong>、二十多张 MyBatis Mapper，
+            已在生产环境以 Spring Boot 48080 端口跑起来。
+          </p>
+        </div>
+      );
+    },
+  },
+  {
+    id: "asean-risk",
+    category: "竞赛 · 二等奖 · 风控预警",
+    title: "东盟跨境中小商户智能风控预警平台",
+    src: "/assets/projects-screenshots/asean-risk/cover.jpg",
+    screenshots: ["cover.jpg"],
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.vue,
+        PROJECT_SKILLS.weapp,
+      ],
+      backend: [
+        PROJECT_SKILLS.springboot,
+        PROJECT_SKILLS.java,
+        PROJECT_SKILLS.mysql,
+        PROJECT_SKILLS.redis,
+      ],
+    },
+    github: "https://github.com/Daylight-by/asean-risk-warning-platform",
+    live: "",
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            竞赛二等奖 —— 一套面向东盟跨境中小商户的可解释风控与事前预警原型。
+          </TypographyP>
+          <TypographyP className="font-mono">
+            面向中国—东盟跨境中小商户，把海关吞吐、口岸、贸易统计、政策目录等公开数据
+            整合起来，输出企业合规风险的辅助判断。参赛中负责整体设计与全栈实现，
+            最终拿到竞赛<strong>二等奖</strong>。
+          </TypographyP>
+          <ProjectsLinks live={this.live} repo={this.github} />
+
+          <TypographyH3 className="my-4 mt-8">评分模型</TypographyH3>
+          <p className="font-mono mb-2">
+            核心是「可解释评分卡 + 国别规则配置 + 事前预警特征」。
+            综合得分越高风险越低：基础资质 20%、经营合规 30%、口岸通关 25%、
+            贸易活跃 15%、综合调整 10%，加权后再扣风险项。
+            阈值和国别权重持久化在数据库，监管端可直接调。
+          </p>
+          <p className="font-mono mb-2">
+            纯向量黑盒在合规场景里不可用，所以每一条召回的结论都能点开看来源，
+            给不出依据的判断不算数。
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">三端架构</TypographyH3>
+          <p className="font-mono mb-2">
+            <strong>后端</strong> Spring Boot 3.3 + Java 21 + MyBatis + MySQL 8 + Redis；
+            <strong>政务监管端</strong> Vue 2 + Element UI + ECharts，做看板、预警和规则配置；
+            <strong>商户端</strong> 原生微信小程序，17 个页面，含查询、评分、预警订阅、
+            口岸、术语、合规、AI 助手等。
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">数据与边界</TypographyH3>
+          <p className="font-mono mb-2">
+            数据集用的是公开的海关、口岸、贸易统计与政策目录，附了数据可信说明、回测与误报分析；
+            系统输出是风险辅助判断，不构成行政处罚、海关裁定或金融授信结论，
+            演示数据均为 DEMO 样例。
+          </p>
+        </div>
+      );
+    },
+  },
+  {
     id: "portfolio-site",
     category: "个人站点 · WebGL",
     title: "本站 · 作品集",
