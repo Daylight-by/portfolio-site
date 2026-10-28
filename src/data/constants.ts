@@ -330,25 +330,6 @@ export type Experience = {
 
 export const EXPERIENCE: Experience[] = [
   {
-    id: 5,
-    startDate: "2026",
-    endDate: "至今",
-    title: "实习 · 设计师家装服务平台（芋道二次开发）",
-    company: "后端开发实习生",
-    description: [
-      "实习期间跟随团队参与家装服务平台开发，平台基于芋道（yudao）商城版二次开发，连接业主与设计师。",
-      "平台级官方模块由团队维护，我跟随导师和同事在其上做业务，参与设计师模块（档案、入驻审核、认证等级、预约排班、作品集、全景图、证书、评价、技能评分、收藏、通知等）与家装案例模块的业务接口、Service 逻辑和数据访问层开发。",
-      "熟悉了多租户隔离（TenantBaseDO）、用枚举加 service 校验防止状态回跳、资源服务统一管理，以及「不改上游」的协作规范。",
-      "跟着团队走完需求、编码、联调到上线的全过程，通过 code review 对齐团队写法。",
-    ],
-    skills: [
-      SkillNames.JAVA,
-      SkillNames.SPRING,
-      SkillNames.MYSQL,
-      SkillNames.REDIS,
-    ],
-  },
-  {
     id: 1,
     startDate: "2026.09",
     endDate: "至今",
@@ -369,9 +350,28 @@ export const EXPERIENCE: Experience[] = [
     ],
   },
   {
+    id: 5,
+    startDate: "2026.07",
+    endDate: "2026.09",
+    title: "实习 · 设计师家装服务平台（芋道二次开发）",
+    company: "后端开发实习生",
+    description: [
+      "实习期间跟随团队参与家装服务平台开发，平台基于芋道（yudao）商城版二次开发，连接业主与设计师。",
+      "平台级官方模块由团队维护，我跟随导师和同事在其上做业务，参与设计师模块（档案、入驻审核、认证等级、预约排班、作品集、全景图、证书、评价、技能评分、收藏、通知等）与家装案例模块的业务接口、Service 逻辑和数据访问层开发。",
+      "熟悉了多租户隔离（TenantBaseDO）、用枚举加 service 校验防止状态回跳、资源服务统一管理，以及「不改上游」的协作规范。",
+      "跟着团队走完需求、编码、联调到上线的全过程，通过 code review 对齐团队写法。",
+    ],
+    skills: [
+      SkillNames.JAVA,
+      SkillNames.SPRING,
+      SkillNames.MYSQL,
+      SkillNames.REDIS,
+    ],
+  },
+  {
     id: 2,
-    startDate: "2026.09",
-    endDate: "2026.10",
+    startDate: "2026.07",
+    endDate: "2026.09",
     title: "微信小程序 · 电商全链路",
     company: "独立开发",
     description: [
