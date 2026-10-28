@@ -368,7 +368,7 @@ export const ROOT: VNode = {
     {
       name: "projects",
       kind: "dir",
-      hint: "6 个项目",
+      hint: "4 个项目",
       children: [
         {
           name: "knowledge-hub.md",
@@ -377,22 +377,10 @@ export const ROOT: VNode = {
           hint: "知识库与 Agent 工作流 · 主力项目",
         },
         {
-          name: "huana-mall.md",
-          kind: "file",
-          content: projHuana,
-          hint: "电商小程序 · Taro",
-        },
-        {
           name: "hotel-management.md",
           kind: "file",
           content: projHotel,
           hint: "来财酒店 PMS · 33 张表",
-        },
-        {
-          name: "yudao-designer.md",
-          kind: "file",
-          content: projYudao,
-          hint: "设计师家装平台 · 芋道二次开发",
         },
         {
           name: "asean-risk.md",
