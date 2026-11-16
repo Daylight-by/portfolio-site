@@ -68,7 +68,7 @@ Pages 用 legacy 模式，`Deploy from a branch` → `main` / `/`。
 | --- | --- |
 | 名字、邮箱、域名、社交链接 | `src/data/config.ts` |
 | 项目 | `src/data/projects.tsx` |
-| 技能 / 经历 | `src/components/sections/skills.tsx`、`experience.tsx` |
+| 技能 / 经历 | `src/data/constants.ts`（文案）、`skills.tsx` / `experience.tsx`（排版） |
 | 终端里的内容 | `src/components/terminal/fs.ts` |
 | 简历 | `src/app/resume/resume-view.tsx` |
 | 文章 | `src/content/blogs/*.mdx` |

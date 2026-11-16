@@ -6,17 +6,19 @@
 
 const config = {
   // 显示名（开屏、页脚、简历都会用）
-  name: "Daylight",
+  name: "宾少强",
   handle: "Daylight-by",
 
-  title: "Daylight · 网络安全 & 全栈开发",
+  title: "宾少强 · 全栈 / Java 后端",
   description: {
-    long: "Daylight 的个人作品集 —— 网络安全学习者、Java 全栈开发者。记录 Web 安全攻防、Spring Boot 工程实践与 AI Agent 应用的探索过程。含完整项目作品集、简历与技术博客。",
+    long: "宾少强的个人作品集 —— 软件工程本科在读，寻找全栈 / Java 后端实习，Agent 相关方向也可以。记录 Spring Boot 工程实践、进行中的 Agent 应用与网络安全学习。含项目作品集、简历与技术博客。",
     short:
-      "Daylight 的作品集 —— 网络安全 × 全栈开发 × AI Agent。含项目作品集、简历与技术博客。",
+      "宾少强的作品集 —— 全栈 / Java 后端实习 · Agent · 网络安全学习。含项目作品集、简历与技术博客。",
   },
   keywords: [
+    "宾少强",
     "Daylight",
+    "Daylight-by",
     "作品集",
     "portfolio",
     "网络安全",
@@ -25,6 +27,7 @@ const config = {
     "Java",
     "Spring Boot",
     "全栈开发",
+    "实习",
     "AI Agent",
     "知识库",
     "渗透测试",
@@ -32,13 +35,13 @@ const config = {
     "Next.js",
     "React",
   ],
-  author: "Daylight",
+  author: "宾少强",
   email: "18276524867@163.com",
   site: "https://bsqdsq.top",
 
   // 一句话自我介绍 —— 终端 `whoami` 与 hero 区都会用
-  tagline: "网络安全学习者 · Java 全栈开发 · 正在把 AI Agent 落地",
-  role: "网络安全 / 全栈开发",
+  tagline: "软件工程本科在读 · 找全栈 / Java 后端实习 · Agent 相关也可以",
+  role: "全栈 / Java 后端",
   location: "中国 · 浙江",
 
   // for github stars button

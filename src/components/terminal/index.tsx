@@ -243,7 +243,7 @@ function run(raw: string, ctx: Ctx) {
         ok("     cat projects/" + it.name, "dim");
       });
       ok("");
-      ok("全部在 /#projects 页面上有更完整的版本。", "dim");
+      ok("作品卡片在 /#projects。实习项目在首页「经历」和 /resume。", "dim");
       break;
     }
 
@@ -400,6 +400,13 @@ function run(raw: string, ctx: Ctx) {
 /* ------------------------------------------------------------------ */
 
 const openTargets: Record<string, { label: string; href: string; external?: string }> = {
+  "zhai-anju": { label: "宅安居管理系统 3.0", href: "/#experience" },
+  "宅安居": { label: "宅安居管理系统 3.0", href: "/#experience" },
+  "designer-platform": { label: "设计师家装服务平台", href: "/#experience" },
+  "设计师家装": { label: "设计师家装服务平台", href: "/#experience" },
+  "asean": { label: "东盟跨境风控", href: "/#projects" },
+  "asean-risk": { label: "东盟跨境风控", href: "/#projects" },
+  "东盟": { label: "东盟跨境风控", href: "/#projects" },
   "knowledge-hub": { label: "知识库与 Agent 工作流", href: "/#projects" },
   "knowledge": { label: "知识库与 Agent 工作流", href: "/#projects" },
   "知识库": { label: "知识库与 Agent 工作流", href: "/#projects" },
