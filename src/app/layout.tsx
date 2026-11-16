@@ -26,7 +26,7 @@ export const metadata: Metadata = {
         url: config.ogImg,
         width: 800,
         height: 600,
-        alt: "宾少强的作品集",
+        alt: "Daylight 的作品集",
       },
     ],
     type: "website",
