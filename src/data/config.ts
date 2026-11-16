@@ -6,17 +6,16 @@
 
 const config = {
   // 显示名（开屏、页脚、简历都会用）
-  name: "宾少强",
+  name: "Daylight",
   handle: "Daylight-by",
 
-  title: "宾少强 · 全栈 / Java 后端",
+  title: "Daylight · 网络安全 & 全栈开发",
   description: {
-    long: "宾少强的个人作品集 —— 软件工程本科在读，寻找全栈 / Java 后端实习，Agent 相关方向也可以。记录 Spring Boot 工程实践、进行中的 Agent 应用与网络安全学习。含项目作品集、简历与技术博客。",
+    long: "Daylight 的个人作品集 —— 软件工程本科在读，寻找全栈 / Java 后端实习，Agent 相关方向也可以。记录 Spring Boot 工程实践、进行中的 Agent 应用与网络安全学习。含项目作品集、简历与技术博客。",
     short:
-      "宾少强的作品集 —— 全栈 / Java 后端实习 · Agent · 网络安全学习。含项目作品集、简历与技术博客。",
+      "Daylight 的作品集 —— 全栈 / Java 后端实习 · Agent · 网络安全学习。含项目作品集、简历与技术博客。",
   },
   keywords: [
-    "宾少强",
     "Daylight",
     "Daylight-by",
     "作品集",
@@ -35,7 +34,7 @@ const config = {
     "Next.js",
     "React",
   ],
-  author: "宾少强",
+  author: "Daylight",
   email: "18276524867@163.com",
   site: "https://bsqdsq.top",
 
