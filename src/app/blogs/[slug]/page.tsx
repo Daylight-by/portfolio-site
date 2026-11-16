@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, CalendarDays, Clock, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import RevealAnimation from "@/components/reveal-animations";
+import { config } from "@/data/config";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getBlogPost(slug);
   if (!post) notFound();
   return {
-    title: `${post.metadata.title} | Daylight`,
+    title: `${post.metadata.title} | ${config.author}`,
     description: post.metadata.summary,
   };
 }

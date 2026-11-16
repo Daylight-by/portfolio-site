@@ -253,12 +253,13 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            喂进去一堆资料，让它自己长出知识结构 —— 而不是又一个聊天框。
+            进行中。核心已跑通：文档解析、向量检索、Agent 编排、工作流可视化。
           </TypographyP>
           <TypographyP className="font-mono">
-            这是目前投入最多的一个项目。出发点很直接：大模型能聊，
+            个人项目，还不是完整上线的产品。出发点很直接：大模型能聊，
             但它不知道我手里那几百份文档讲了什么，而且每次问都要从头讲一遍。
-            我要的是一个能消化私有资料、还能按流程替我把活干完的系统。
+            我要的是一个能消化私有资料、还能按流程替我把活干完的系统，
+            而不是又一个聊天框。
           </TypographyP>
 
           <TypographyH3 className="my-4 mt-8">已经跑通的部分</TypographyH3>
@@ -437,14 +438,12 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono text-xl text-center">
-            2026 年「数据要素 ×」大赛广西分赛（高校赛道）暨第六届广西公共数据开放创新应用大赛
-            · 二等奖
+            2026年「数据要素×」广西分赛高校赛道（第六届广西公共数据开放创新应用大赛）二等奖
           </TypographyP>
           <TypographyP className="font-mono">
-            一套面向中国—东盟跨境中小商户的可解释风控与事前预警原型，把海关吞吐、口岸、
-            贸易统计、政策目录等公开数据整合起来，输出企业合规风险的辅助判断。
-            作品参加 2026 年「数据要素 ×」大赛广西分赛（高校赛道）暨第六届广西公共数据
-            开放创新应用大赛，最终获<strong>二等奖</strong>，由我负责整体设计与全栈实现。
+            面向中国—东盟跨境中小商户的 Java 全栈竞赛原型，做可解释风控与事前预警：
+            把海关吞吐、口岸、贸易统计、政策目录等公开数据整合起来，输出企业合规风险的辅助判断。
+            获 2026年「数据要素×」广西分赛高校赛道（第六届广西公共数据开放创新应用大赛）二等奖。
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
 
@@ -462,7 +461,7 @@ const projects: Project[] = [
 
           <TypographyH3 className="my-4 mt-8">三端架构</TypographyH3>
           <p className="font-mono mb-2">
-            <strong>后端</strong> Spring Boot 3.3 + Java 21 + MyBatis + MySQL 8 + Redis；
+            <strong>后端</strong> Spring Boot 3.3.5 + Java 21 + MyBatis + MySQL + Redis，可用 Docker Compose 启动；
             <strong>政务监管端</strong> Vue 2 + Element UI + ECharts，做看板、预警和规则配置；
             <strong>商户端</strong> 原生微信小程序，17 个页面，含查询、评分、预警订阅、
             口岸、术语、合规、AI 助手等。

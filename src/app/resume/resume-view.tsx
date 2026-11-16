@@ -10,7 +10,7 @@ import { config } from "@/data/config";
 
 const SECTIONS = {
   intro:
-    "计算机专业在读。从 Java 全栈起步，独立做过从零到线上的完整项目；现在主攻网络安全，同时把 AI Agent 往真实场景里落。习惯把踩过的坑写成文档 —— 写不出来，说明还没懂。",
+    "桂林信息科技学院信息工程学院软件工程本科大三在读，课程以 Java 为主，也学过一些 Python、C#、C。从 Java 全栈起步，独立做过从零到线上的完整项目；网络安全在自学，Agent 工作流平台仍在进行中。习惯把踩过的坑写成文档 —— 写不出来，说明还没懂。",
   skills: [
     { group: "语言", items: ["Java", "TypeScript", "JavaScript", "Python（基础）", "SQL"] },
     { group: "后端", items: ["Spring Boot 4", "JPA / Hibernate", "Node.js", "REST API"] },
@@ -25,11 +25,21 @@ const SECTIONS = {
       period: "2026.09 – 至今",
       role: "独立开发",
       points: [
-        "目标是「喂进去资料，它自己长出知识结构」，而不是又一个聊天框。",
-        "已跑通文档解析入库、向量检索、Agent 编排、工作流可视化。",
+        "进行中的个人项目，不是已经完整上线的产品。目标是「喂进去资料，它自己长出知识结构」，而不是又一个聊天框。",
+        "核心已跑通：文档解析、向量检索、Agent 编排、工作流可视化。",
         "正在攻长文档切分的语义边界、多轮检索的上下文预算、工具调用的失败重试。",
       ],
       stack: "Next.js · TypeScript · PostgreSQL · Docker",
+    },
+    {
+      name: "东盟跨境中小商户智能风控预警平台",
+      period: "2026",
+      role: "Java 全栈竞赛原型",
+      points: [
+        "2026年「数据要素×」广西分赛高校赛道（第六届广西公共数据开放创新应用大赛）二等奖。",
+        "可解释评分卡与国别规则配置。技术栈：Spring Boot 3.3.5、Java 21、MyBatis、MySQL、Redis、Vue 2、Element UI、ECharts、原生微信小程序，可用 Docker Compose 启动。",
+      ],
+      stack: "github.com/Daylight-by/asean-risk-warning-platform",
     },
     {
       name: "微信小程序 · 电商全链路",
@@ -65,6 +75,18 @@ const SECTIONS = {
       stack: "Next.js 16 · WebGL · GLSL · GSAP · TypeScript",
     },
   ],
+  intent: ["实习", "全栈 / Java 后端；Agent 相关也可以"],
+  internship: {
+    company: "三明市华旭玮悦网络科技有限公司",
+    title: "软件开发工程师",
+    period: "2026.07 – 2026.11",
+    points: [
+      "独立完成并已上线「宅安居管理系统 3.0」：欧派、鸣格员工使用的内部客户与订单系统。前端 HTML + JavaScript，后端为腾讯云 CloudBase（数据库 + 云函数）。",
+      "实现登录、角色与数据范围权限，以及销售、设计、财务、交付、电商、组织管理工作台。流程：新客户 → 合同 → 设计 → 财务审核 → 安装。云函数覆盖登录、修改密码、管理、审计日志和密码策略，并配有测试。",
+      "团队项目「设计师家装服务平台」（基于芋道 yudao 商城版，不是个人独立完成）：负责后端业务模块的增删改查和管理端接口，参与设计师模块（档案、入驻审核、认证等级、预约排班、作品集、全景图、证书、评价、技能评分、收藏、通知等）与家装案例模块的业务接口、Service 和数据访问层。",
+      "实习期间也做过一些视频制作。",
+    ],
+  },
   learning: [
     "网络基础：TCP/IP、HTTP/HTTPS、DNS",
     "Linux：命令行、权限、进程管理",
@@ -183,10 +205,24 @@ export default function ResumeView() {
                     <h2 className="mb-3 border-b border-black/15 pb-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-black/50">
                       教育
                     </h2>
-                    <p className="text-[13px] font-semibold">本科 · 在读</p>
-                    <p className="mt-0.5 text-[12.5px] text-black/60">计算机相关专业</p>
+                    <p className="text-[13px] font-semibold">桂林信息科技学院</p>
+                    <p className="mt-0.5 text-[12.5px] text-black/70">信息工程学院 · 软件工程</p>
+                    <p className="mt-0.5 text-[12.5px] text-black/60">本科大三在读</p>
+                    <p className="mt-1 text-[12px] leading-relaxed text-black/55">
+                      课程侧重 Java，也学过一些 Python、C#、C。
+                    </p>
                     <p className="mt-1 text-[12px] text-black/45">
                       参与大学生创新创业训练计划（大创）
+                    </p>
+                  </section>
+
+                  <section>
+                    <h2 className="mb-3 border-b border-black/15 pb-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-black/50">
+                      求职意向
+                    </h2>
+                    <p className="text-[13px] font-semibold">{SECTIONS.intent[0]}</p>
+                    <p className="mt-0.5 text-[12.5px] leading-relaxed text-black/60">
+                      {SECTIONS.intent[1]}
                     </p>
                   </section>
 
@@ -211,6 +247,25 @@ export default function ResumeView() {
                       简介
                     </h2>
                     <p className="text-[13px] leading-relaxed text-black/70">{SECTIONS.intro}</p>
+                  </section>
+
+                  <section>
+                    <h2 className="mb-4 border-b border-black/15 pb-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-black/50">
+                      实习经历
+                    </h2>
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+                      <h3 className="text-[14px] font-bold">{SECTIONS.internship.company}</h3>
+                      <span className="font-mono text-[11px] text-black/45">{SECTIONS.internship.period}</span>
+                    </div>
+                    <p className="mt-0.5 text-[11.5px] font-medium text-black/50">{SECTIONS.internship.title}</p>
+                    <ul className="mt-1.5 space-y-1 text-[12.5px] leading-relaxed text-black/65">
+                      {SECTIONS.internship.points.map((pt) => (
+                        <li key={pt} className="flex gap-2">
+                          <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-black/35" />
+                          {pt}
+                        </li>
+                      ))}
+                    </ul>
                   </section>
 
                   <section>

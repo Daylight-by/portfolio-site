@@ -1,9 +1,10 @@
 import React from "react";
 import { getBlogPosts } from "@/lib/mdx";
 import BlogListClient from "./blog-list-client";
+import { config } from "@/data/config";
 
 export const metadata = {
-  title: "博客 | Daylight",
+  title: "博客 | " + config.author,
   description: "技术笔记、项目复盘，以及学习路上踩过的坑。",
 };
 
